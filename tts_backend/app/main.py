@@ -1,8 +1,17 @@
+from app.inference import synthesize, speaker_manager
 from fastapi import FastAPI, Query, HTTPException
 from fastapi.responses import FileResponse
-from app.inference import synthesize, speaker_manager
+from fastapi.middleware.cors import CORSMiddleware
+
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/synthesize")
 def tts(

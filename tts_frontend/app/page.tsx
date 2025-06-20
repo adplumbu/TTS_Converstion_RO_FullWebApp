@@ -36,7 +36,7 @@ export default function TTSInterface() {
     { id: "VCTK_SPK12_male_cv_ro", label: "VCTK SPK12 (Male - CV)" },
     { id: "VCTK_SPK13_male_cv_ro", label: "VCTK SPK13 (Male - CV)" },
     { id: "VCTK_SPK14_male_cv_ro", label: "VCTK SPK14 (Male - CV)" },
-    { id: "VCTK_SPK15_female_cv_ro", label: "VCTK SPK15 (Female - CV)" },
+    { id: "VCTK_SPK15_male_cv_ro", label: "VCTK SPK15 (Male - CV)" },
     { id: "VCTK_SPK16_female_cv_ro", label: "VCTK SPK16 (Female - CV)" },
     { id: "VCTK_SPK17_male_cv_ro", label: "VCTK SPK17 (Male - CV)" },
     { id: "VCTK_SPK18_female_rss_ro", label: "VCTK SPK18 (Female - RSS)" },
@@ -50,7 +50,10 @@ export default function TTSInterface() {
 
     try {
       const response = await fetch(
-        `http://127.0.0.1:8000/synthesize?text=${encodeURIComponent(text)}&speaker_name=${selectedSpeaker}`,
+        //`http://127.0.0.1:8000/synthesize?text=${encodeURIComponent(text)}&speaker_name=${selectedSpeaker}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/synthesize?text=${encodeURIComponent(
+          text,
+        )}&speaker_name=${selectedSpeaker}`,
       )
 
       if (!response.ok) {
